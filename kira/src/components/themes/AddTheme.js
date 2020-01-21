@@ -38,9 +38,9 @@ class AddTheme extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-
-};
+const mapStateToProps = state => ({
+  themes: state.themes
+});
 
 const mapDispatchToProps = dispatch => ({
   addTheme2: (name) => {

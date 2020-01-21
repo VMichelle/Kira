@@ -1,23 +1,52 @@
 import React, { Component } from 'react'
 import { Navbar, Nav, FormControl, Form, Button } from 'react-bootstrap'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
+import { ThemeLayout } from './themes/theme.layout';
+import Backlog from './initiatives/Backlog';
+import HomePage from './home/HomePage';
+
 
 export class Menu extends Component {
     render() {
         return (
+            <Router>
             <div>
-                <Navbar bg="primary" variant="dark">
-                    <Navbar.Brand href="/"><h2>KIRA</h2></Navbar.Brand>
+                <Navbar bg="" variant="dark">
+                    <Navbar.Brand>
+                        <Link to='/'>KIRA</Link>
+                    </Navbar.Brand>
                     <Nav className="mr-auto">
-                        <Nav.Link href="/themes">Projects</Nav.Link>
-                        {/* <Nav.Link href="#features">Features</Nav.Link>
-                        <Nav.Link href="#pricing">Pricing</Nav.Link> */}
+                        <Link to='/themes'>Project</Link>
+                        <Link className='ml-3' to='/backlog'>Backlog</Link>
                     </Nav>
                     <Form inline>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                         <Button variant="outline-light">Search</Button>
                     </Form>
-                </Navbar>               
+                </Navbar> 
+
+                <Switch>
+                    <Route exact path="/">
+                        <HomePage/>
+                    </Route>
+                    <Route exact path="/themes">
+                        <ThemeLayout/>
+                    </Route>
+                    <Route exact path="/backlog">
+                        <Backlog/>
+                    </Route>
+                </Switch>
+
+
             </div>
+            </Router>
+
+            
         )
     }
 }

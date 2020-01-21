@@ -1,16 +1,31 @@
 import React from "react";
 import { connect } from "react-redux";
 import Theme from "./Theme";
+import { Switch, Route, useParams } from 'react-router-dom'
+
+function InitiativesList() {
+  let { id } = useParams();
+
+  return (
+    <div>
+      <h3>ID: {id}</h3>
+    </div>
+  );
+}
 
 class ThemeList extends React.Component {
 
-  renderList = (props) => {
-    console.log('hahahaha')
+  onThemeClick = () =>{
+    console.log('heyyyyy')
+  }
+
+  renderList = () => {
     const {themes} = this.props
+    
     return(
-      <ul>
+      <ul className='d-flex flex-row'>
       {themes.map((theme => (
-        <Theme key={theme.id} theme={theme}/>
+        <Theme key={theme.id} name={theme.name} onClick={this.onThemeClick}/>
       )))
       }
     </ul>
@@ -18,28 +33,22 @@ class ThemeList extends React.Component {
   }
 
   render(){
-    
     return(
       <div>
-        {this.renderList()}
+        <div>
+          {this.renderList()}
+        </div>
+        <div>
+        <Switch>
+          <Route path="/:id" children={<InitiativesList/>} />
+        </Switch>
+        </div>
       </div>
+      
     )
     
   }
 };
-
-// function handleClick(id) {
-//   return console.log('click', id)
-// }
-
-// const ThemeList = ({ themes }) => (
-//   <ul>
-//     {themes.map((theme) => (
-//       <Theme key={theme.id} onClick={(e) => handleClick(theme.id)} theme={theme}/>
-//     )
-//     )}
-//   </ul>
-// );
 
 const mapStateToProps = state => {
 
