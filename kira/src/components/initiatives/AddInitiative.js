@@ -38,9 +38,9 @@ class AddInitiative extends React.Component {
     this.setState({ input: "" });
   };
 
-  dropDownTitle = (value) => {
+  dropDownTitle = () => {
     if(this.state.themeId === ''){
-      return 'Select Theme'
+      return 'Select Project'
     }
     return this.state.themeName
   }

@@ -1,56 +1,74 @@
-import React from "react";
+import React, { Component } from 'react'
 import { connect } from "react-redux";
 import Theme from "./Theme";
 import store from '../../redux/store'
 import Initiative from '../initiatives/Initiative'
 
-function onThemeClick(id, name){
-    const state = store.getState();
+export class ThemeList extends Component {
 
-    let themeInitiatives = state.initiatives.map(
-        (dis => (
-          <Initiative to={dis.id} key={dis.id} name={dis.name} />
+  constructor(props){
+    super(props);
+    this.state = {
+      themeId: '',
+      themeName: '',
+      initi: ''
+    }
+  }
+
+  onThemeClick(id, name){
+    this.setState({
+      ...this.state,
+      themeId: id,
+      themeName: name
+    })
+    this.getInitiatives(id)
+  }
+
+  getInitiatives(id){
+
+    const {initiatives} =  this.props
+
+    let initi = []
+
+    for(let i=0; i<initiatives.length; i++){
+      if(id !== initiatives[i].themeId){
+        let initiative = initiatives[i];
+        initi.push(
+          <Initiative to={initiative.id} key={initiative.id} name={initiative.name} themeId={id}/>
         )
-      )
-    )
+      }
+    }
+
+    this.setState({
+      ...this.state,
+      initi: initi
+    })
     
-    DisplayInitiaties(themeInitiatives)
-
-    // return(
-    //   <div>
-    //   <h4>{name} Initiatives</h4>
-    //     <div className='d-flex'>{themeInitiatives}</div>
-    //   </div>
-    // )
+  }
   
-}
 
-function DisplayInitiaties(props){
-  
+  render() {
+    const {themes} = this.props
     return(
       <div>
-        <div>hi</div>
-        {props.x}
+        <ul className='d-flex flex-wrap'>
+            {themes.map((theme => (
+              <Theme to={theme.id} key={theme.id} name={theme.name} onClick={() => this.onThemeClick(theme.id, theme.name)}/>
+            )))
+            }
+        </ul>
+        <div>
+          {this.state.themeName}
+
+        </div>
+        <div className='d-flex flex-wrap'>
+          {this.state.initi}
+        </div>
       </div>
-    )
-  
+      )
+  }
 }
 
-const ThemeList = ({themes}) => {
-  return(
-  <div>
-    <ul className='d-flex flex-row'>
-        {themes.map((theme => (
-          <Theme to={theme.id} key={theme.id} name={theme.name} onClick={() => onThemeClick(theme.id, theme.name)}/>
-        )))
-        }
-    </ul>
-    <div>
-      <DisplayInitiaties/>
-    </div>
-  </div>
-  )
-}
 
 
 const mapStateToProps = state => {

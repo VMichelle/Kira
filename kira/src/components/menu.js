@@ -26,10 +26,10 @@ export class Menu extends Component {
                         <Link className='ml-3' to='/initiatives'>Initiatives</Link>
                         <Link className='ml-3' to='/backlog'>Backlog</Link>
                     </Nav>
-                    <Form inline>
+                    {/* <Form inline>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                         <Button variant="outline-primary">Search</Button>
-                    </Form>
+                    </Form> */}
                 </Navbar> 
 
                 <Switch>

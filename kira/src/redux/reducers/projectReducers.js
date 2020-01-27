@@ -38,17 +38,6 @@ const initialState = {
         }
 
 
-      //   const { id, content } = action.payload;
-      //   return {
-      //     ...state,
-      //     themes: {
-      //       ...state.byIds,
-      //       [id]: {
-      //         content,
-      //         completed: false
-      //       }
-      //     }
-      //   };
       default:
         return state;
     }
