@@ -1,7 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { connect } from 'react-redux'
 import Initiative from './Initiative';
-
+import {Modal, Button} from 'react-bootstrap'
 
 // const selectInitiative = (themeId) => {
 //     console.log(themeId)
@@ -20,9 +20,9 @@ function Example() {
         </Button>
   
         <Modal
-          show={show}
+          show={show} 
           onHide={() => setShow(false)}
-          dialogClassName="modal-90w"
+          dialogClassName="modal-100w"
           aria-labelledby="example-custom-modal-styling-title"
         >
           <Modal.Header closeButton>
@@ -45,23 +45,27 @@ function Example() {
       </>
     );
   }
-  
-  render(<Example />);
 
-const InitiativesList = ({initiatives}) => (
-        <div>
-            <ul className='d-flex flex-wrap'>
-                {initiatives.map((initiative => (
-                    <Initiative 
-                        key={initiative.id}
-                        name={initiative.name}
-                        themeId={initiative.themeId}
-                        onClick={() => selectInitiative(initiative.id)}
-                    />
-                )))}
-            </ul>
-        </div>
-    )
+const InitiativesList = ({initiatives}) => {
+  const [show, setShow] = useState(false);
+
+
+  return(
+      <div>
+          <ul className='d-flex flex-wrap'>
+              {initiatives.map((initiative => (
+                  <Initiative 
+                      key={initiative.id}
+                      name={initiative.name}
+                      themeId={initiative.themeId}
+                      //onClick={}
+                  />
+              )))}
+          </ul>
+          <Example />
+      </div>
+  )
+}
 
 const mapStateToProps = state => {
     return {

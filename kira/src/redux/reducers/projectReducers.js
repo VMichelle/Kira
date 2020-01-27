@@ -1,10 +1,11 @@
+import data from './data.js'
+
 export const ADD_THEME = "ADD_THEME";
 export const ADD_INITIATIVE = "ADD_INITIATIVE";
+export const ADD_STORY = "ADD_STORY";
 
-const initialState = {
-    themes: [{id: 1, name:'Canada'}, {id: 2, name:'United States'}, {id: 3, name:'South America'}],
-    initiatives: [{id: 1, name:'Ontario', themeId: 1}, {id: 2, name:'New York', themeId: 1}, {id: 3, name:'Brazil', themeId: 2}]
-  };
+
+const initialState = data()
   
   export function kira(state = initialState, action) {
     console.log(action.type)
@@ -36,6 +37,21 @@ const initialState = {
                 initiatives: newArr
             };
         }
+        case ADD_STORY: {
+          const newArr = [];
+          for(let i=0; i<state.stories.length; i++){
+              newArr.push(state.stories[i])
+          }
+          newArr.push({
+            id: state.stories.length+1,
+            name: action.name.input,
+            initiativeId: action.name.initiativeId
+          })
+          return {
+              ...state,
+              stories: newArr
+          };
+      }        
 
 
       default:

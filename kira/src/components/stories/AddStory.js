@@ -3,14 +3,14 @@ import { connect } from "react-redux";
 import { addInitiative } from '../../redux/reducers/projectReducers';
 import { Dropdown, DropdownButton } from 'react-bootstrap'
 
-class AddInitiative extends React.Component {
+class AddStory extends React.Component {
   
   constructor(props) {
     super(props);
     this.state = { 
       input: '',
-      themeId: 0,
-      themeName: ''
+      initiativeId: '',
+      initiativeName: ''
     };
   }
 
@@ -25,14 +25,14 @@ class AddInitiative extends React.Component {
     console.log(target, target.name)
     this.setState({
       ...this.state,
-      themeId: parseInt(target.id),
-      themeName: target.name
+      initiativeId: target.id,
+      initiativeName: target.name
     })
   }
 
-  handleAddInitiative = () => {
+  handleAddStory = () => {
     if(this.state.input === '' || this.state.themeId === ''){
-      return alert('Input initiative and select a theme before adding')
+      return alert('Input story and select an initiative before adding')
     }
     this.props.addInitiative(this.state);
     this.setState({ input: "" });
@@ -40,27 +40,27 @@ class AddInitiative extends React.Component {
 
   dropDownTitle = () => {
     if(this.state.themeId === ''){
-      return 'Select Project'
+      return 'Select'
     }
     return this.state.themeName
   }
 
-  loadThemes = () => {
-    const {themes} = this.props;
+  loadStories = () => {
+    const {stories} = this.props;
 
     return(
       <DropdownButton
         id="dropdown-basic-button"
         title={this.dropDownTitle()}
       >
-        {themes.map((theme => (
+        {stories.map((story => (
           <Dropdown.Item
-            id={theme.id}
+            id={story.id}
             onClick={e => this.updateThemeId(e.target)}
-            key={theme.id}
-            name={theme.name}
+            key={story.id}
+            name={story.name}
             >
-              {theme.name}
+              {story.name}
             </Dropdown.Item>
         )))}
       </DropdownButton>
@@ -73,7 +73,7 @@ class AddInitiative extends React.Component {
         <input
           onChange={e => this.updateInput(e.target.value)}
           value={this.state.input}
-          placeholder='Start here'
+          placeholder='Input story here...'
           className='pl-2'
         />
         <div>
@@ -81,7 +81,7 @@ class AddInitiative extends React.Component {
         </div>
         
         <button className="btn btn-outline-primary btn-sm ml-2" onClick={this.handleAddInitiative}>
-          Add Initiative
+          Add Story
         </button>
       </div>
     );
@@ -90,17 +90,18 @@ class AddInitiative extends React.Component {
 
 const mapStateToProps = state => ({
   initiatives: state.initiatives,
-  themes: state.themes
+  themes: state.themes,
+  stories: state.story
 });
 
 const mapDispatchToProps = dispatch => ({
-  addInitiative: (state) => {
-    dispatch(addInitiative(state))
+  addStory: (state) => {
+    dispatch(addStory(state))
   }
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddInitiative);
-// export default AddTodo;
+)(AddStory);
+

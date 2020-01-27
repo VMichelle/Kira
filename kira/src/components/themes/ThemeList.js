@@ -26,23 +26,24 @@ export class ThemeList extends Component {
 
   getInitiatives(id){
 
-    const {initiatives} =  this.props
-
+    const {initiatives} = this.props
+    console.log(initiatives)
     let initi = []
 
     for(let i=0; i<initiatives.length; i++){
-      if(id !== initiatives[i].themeId){
+      if(id === initiatives[i].themeId){
         let initiative = initiatives[i];
         initi.push(
           <Initiative to={initiative.id} key={initiative.id} name={initiative.name} themeId={id}/>
         )
       }
     }
-
+    console.log(id, initi)
     this.setState({
-      ...this.state,
+      //...this.state,
       initi: initi
     })
+    console.log(this.state)
     
   }
   
@@ -59,7 +60,6 @@ export class ThemeList extends Component {
         </ul>
         <div>
           {this.state.themeName}
-
         </div>
         <div className='d-flex flex-wrap'>
           {this.state.initi}
