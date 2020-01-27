@@ -3,7 +3,7 @@ export const ADD_INITIATIVE = "ADD_INITIATIVE";
 
 const initialState = {
     themes: [{id: 1, name:'Canada'}, {id: 2, name:'United States'}, {id: 3, name:'South America'}],
-    initiatives: []
+    initiatives: [{id: 1, name:'Ontario', themeId: 1}, {id: 2, name:'New York', themeId: 1}, {id: 3, name:'Brazil', themeId: 2}]
   };
   
   export function kira(state = initialState, action) {
@@ -17,6 +17,7 @@ const initialState = {
             }
             newArr.push({id: state.themes.length+1, name: action.name})
             return {
+                ...state,
                 themes: newArr
             };
         }
@@ -25,9 +26,14 @@ const initialState = {
             for(let i=0; i<state.initiatives.length; i++){
                 newArr.push(state.initiatives[i])
             }
-            newArr.push({id: state.initiatives.length+1, name: action.name})
+            newArr.push({
+              id: state.initiatives.length+1,
+              name: action.name.input,
+              themeId: action.name.themeId
+            })
             return {
-                themes: newArr
+                ...state,
+                initiatives: newArr
             };
         }
 

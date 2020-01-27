@@ -1,59 +1,63 @@
 import React from "react";
 import { connect } from "react-redux";
 import Theme from "./Theme";
-import { Switch, Route, useParams } from 'react-router-dom'
+import store from '../../redux/store'
+import Initiative from '../initiatives/Initiative'
 
-function InitiativesList() {
-  let { id } = useParams();
+function onThemeClick(id, name){
+    const state = store.getState();
 
-  return (
-    <div>
-      <h3>ID: {id}</h3>
-    </div>
-  );
+    let themeInitiatives = state.initiatives.map(
+        (dis => (
+          <Initiative to={dis.id} key={dis.id} name={dis.name} />
+        )
+      )
+    )
+    
+    DisplayInitiaties(themeInitiatives)
+
+    // return(
+    //   <div>
+    //   <h4>{name} Initiatives</h4>
+    //     <div className='d-flex'>{themeInitiatives}</div>
+    //   </div>
+    // )
+  
 }
 
-class ThemeList extends React.Component {
-
-  onThemeClick = () =>{
-    console.log('heyyyyy')
-  }
-
-  renderList = () => {
-    const {themes} = this.props
-    
-    return(
-      <ul className='d-flex flex-row'>
-      {themes.map((theme => (
-        <Theme key={theme.id} name={theme.name} onClick={this.onThemeClick}/>
-      )))
-      }
-    </ul>
-    )
-  }
-
-  render(){
+function DisplayInitiaties(props){
+  
     return(
       <div>
-        <div>
-          {this.renderList()}
-        </div>
-        <div>
-        <Switch>
-          <Route path="/:id" children={<InitiativesList/>} />
-        </Switch>
-        </div>
+        <div>hi</div>
+        {props.x}
       </div>
-      
     )
-    
-  }
-};
+  
+}
+
+const ThemeList = ({themes}) => {
+  return(
+  <div>
+    <ul className='d-flex flex-row'>
+        {themes.map((theme => (
+          <Theme to={theme.id} key={theme.id} name={theme.name} onClick={() => onThemeClick(theme.id, theme.name)}/>
+        )))
+        }
+    </ul>
+    <div>
+      <DisplayInitiaties/>
+    </div>
+  </div>
+  )
+}
+
 
 const mapStateToProps = state => {
 
   return {
-    themes: state.themes
+    themes: state.themes,
+    initiatives: state.initiatives
   }
 };
 

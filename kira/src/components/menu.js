@@ -9,6 +9,7 @@ import {
 import { ThemeLayout } from './themes/theme.layout';
 import Backlog from './initiatives/Backlog';
 import HomePage from './home/HomePage';
+import { InitiativesLayout } from './initiatives/initiative.layout';
 
 
 export class Menu extends Component {
@@ -22,11 +23,12 @@ export class Menu extends Component {
                     </Navbar.Brand>
                     <Nav className="mr-auto">
                         <Link to='/themes'>Project</Link>
+                        <Link className='ml-3' to='/initiatives'>Initiatives</Link>
                         <Link className='ml-3' to='/backlog'>Backlog</Link>
                     </Nav>
                     <Form inline>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                        <Button variant="outline-light">Search</Button>
+                        <Button variant="outline-primary">Search</Button>
                     </Form>
                 </Navbar> 
 
@@ -37,12 +39,13 @@ export class Menu extends Component {
                     <Route exact path="/themes">
                         <ThemeLayout/>
                     </Route>
+                    <Route exact path="/initiatives">
+                        <InitiativesLayout/>
+                    </Route>
                     <Route exact path="/backlog">
                         <Backlog/>
                     </Route>
                 </Switch>
-
-
             </div>
             </Router>
 
