@@ -42,7 +42,7 @@ export class Menu extends Component {
                     <Route exact path="/initiatives">
                         <InitiativesLayout/>
                     </Route>
-                    <Route exact path="/backlog">
+                    <Route exact path="/backlog/:id">
                         <Backlog/>
                     </Route>
                 </Switch>

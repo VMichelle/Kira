@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { connect } from "react-redux";
 import Theme from "./Theme";
-import store from '../../redux/store'
-import Initiative from '../initiatives/Initiative'
+import store from '../../redux/store';
+import Initiative from '../initiatives/Initiative';
+import AddInitiative from '../initiatives/AddInitiative'
 
 export class ThemeList extends Component {
 
@@ -11,7 +12,8 @@ export class ThemeList extends Component {
     this.state = {
       themeId: '',
       themeName: '',
-      initi: ''
+      initi: '',
+      epics: ''
     }
   }
 
@@ -27,24 +29,34 @@ export class ThemeList extends Component {
   getInitiatives(id){
 
     const {initiatives} = this.props
-    console.log(initiatives)
     let initi = []
 
     for(let i=0; i<initiatives.length; i++){
       if(id === initiatives[i].themeId){
         let initiative = initiatives[i];
         initi.push(
-          <Initiative to={initiative.id} key={initiative.id} name={initiative.name} themeId={id}/>
+          <Initiative 
+            to={initiative.id}
+            key={initiative.id}
+            name={initiative.name}
+            themeId={id}
+            onClick={() => this.getEpics(initiative.id)}
+          />
         )
       }
     }
-    console.log(id, initi)
+
     this.setState({
       //...this.state,
       initi: initi
     })
-    console.log(this.state)
     
+  }
+
+  getEpics(id){
+
+    //const {  }
+    return
   }
   
 
@@ -58,12 +70,16 @@ export class ThemeList extends Component {
             )))
             }
         </ul>
+        
         <div>
           {this.state.themeName}
         </div>
         <div className='d-flex flex-wrap'>
           {this.state.initi}
         </div>
+        {/* <div className='mt-5'>
+          <AddInitiative />
+        </div> */}
       </div>
       )
   }
@@ -72,10 +88,10 @@ export class ThemeList extends Component {
 
 
 const mapStateToProps = state => {
-
   return {
     themes: state.themes,
-    initiatives: state.initiatives
+    initiatives: state.initiatives,
+    epics: state.epics
   }
 };
 

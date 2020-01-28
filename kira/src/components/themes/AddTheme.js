@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-//import { addTheme } from "../../redux/actions";
 import { addTheme } from '../../redux/reducers/projectReducers'
 
 class AddTheme extends React.Component {
@@ -31,7 +30,7 @@ class AddTheme extends React.Component {
           className='pl-2'
         />
         <button className="btn btn-outline-primary btn-sm ml-2" onClick={this.handleAddTheme}>
-          Add Theme
+          Add Project
         </button>
       </div>
     );

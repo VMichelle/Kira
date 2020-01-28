@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
+import {useParams} from 'react-router-dom'
 
-export default class Backlog extends Component {
-    render() {
-        return (
-            <div>
-                BACKLOG PAGE
-            </div>
-        )
-    }
+function Backlog() {
+    let {id} = useParams();
+    console.log(id)
+return <div>BACKLOG PAGE {id} </div>
+         
 }
+
+export default Backlog

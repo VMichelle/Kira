@@ -39,13 +39,13 @@ class AddInitiative extends React.Component {
   };
 
   dropDownTitle = () => {
-    if(this.state.themeId === ''){
+    if(this.state.themeId === 0){
       return 'Select Project'
     }
     return this.state.themeName
   }
 
-  loadThemes = () => {
+  loadThemes = (id) => {
     const {themes} = this.props;
 
     return(
@@ -73,10 +73,10 @@ class AddInitiative extends React.Component {
         <input
           onChange={e => this.updateInput(e.target.value)}
           value={this.state.input}
-          placeholder='Start here'
+          placeholder='Add initiative'
           className='pl-2'
         />
-        <div>
+        <div className='ml-2'>
           {this.loadThemes()}
         </div>
         

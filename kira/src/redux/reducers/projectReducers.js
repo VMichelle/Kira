@@ -2,7 +2,8 @@ import data from './data.js'
 
 export const ADD_THEME = "ADD_THEME";
 export const ADD_INITIATIVE = "ADD_INITIATIVE";
-export const ADD_STORY = "ADD_STORY";
+export const ADD_EPIC = "ADD_EPIC";
+//export const ADD_STORY = "ADD_STORY";
 
 
 const initialState = data()
@@ -37,21 +38,38 @@ const initialState = data()
                 initiatives: newArr
             };
         }
-        case ADD_STORY: {
+        case ADD_EPIC: {
           const newArr = [];
-          for(let i=0; i<state.stories.length; i++){
-              newArr.push(state.stories[i])
+          for(let i=0; i<state.epics.length; i++){
+              newArr.push(state.epics[i])
           }
           newArr.push({
-            id: state.stories.length+1,
+            id: state.epics.length+1,
             name: action.name.input,
-            initiativeId: action.name.initiativeId
+            details: action.name.details,
+            initiativeId: action.name.initiativeId,
+            done: false
           })
           return {
               ...state,
-              stories: newArr
+              epics: newArr
           };
-      }        
+        }
+        // case ADD_STORY: {
+        //   const newArr = [];
+        //   for(let i=0; i<state.stories.length; i++){
+        //       newArr.push(state.stories[i])
+        //   }
+        //   newArr.push({
+        //     id: state.stories.length+1,
+        //     name: action.name.input,
+        //     initiativeId: action.name.initiativeId
+        //   })
+        //   return {
+        //       ...state,
+        //       stories: newArr
+        //   };
+        // }        
 
 
       default:
@@ -68,3 +86,13 @@ const initialState = data()
     type: ADD_INITIATIVE,
     name: name
   });
+
+  export const addEpic = name => ({
+    type: ADD_EPIC,
+    name: name
+  });
+
+  // export const addStory = name => ({
+  //   type: ADD_STORY,
+  //   name: name
+  // });

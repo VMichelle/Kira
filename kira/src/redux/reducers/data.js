@@ -21,7 +21,6 @@ export default function data() {
                 name: 'First Epic',
                 details: '1 Quibusdam facilis doloribus debitis! Sit quasi quod accusamus eos quod.',
                 initiativeId: 1,
-                storyId: 1,
                 done: false
             },
             {

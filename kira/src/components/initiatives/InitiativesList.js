@@ -55,9 +55,10 @@ const InitiativesList = ({initiatives}) => {
           <ul className='d-flex flex-wrap'>
               {initiatives.map((initiative => (
                   <Initiative 
-                      key={initiative.id}
-                      name={initiative.name}
-                      themeId={initiative.themeId}
+                      initiative={initiative}
+                      // key={initiative.id}
+                      // name={initiative.name}
+                      // themeId={initiative.themeId}
                       //onClick={}
                   />
               )))}
