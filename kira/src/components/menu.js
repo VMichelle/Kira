@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Navbar, Nav, FormControl, Form, Button } from 'react-bootstrap'
+import { Navbar, Nav } from 'react-bootstrap'
 import {
     BrowserRouter as Router,
     Switch,
@@ -7,9 +7,10 @@ import {
     Link
   } from "react-router-dom";
 import { ThemeLayout } from './themes/theme.layout';
-import Backlog from './initiatives/Backlog';
+import Backlog from './Backlog';
 import HomePage from './home/HomePage';
 import { InitiativesLayout } from './initiatives/initiative.layout';
+import StoryLayout from './stories/story.layout'
 
 
 export class Menu extends Component {
@@ -22,14 +23,10 @@ export class Menu extends Component {
                         <Link to='/'>KIRA</Link>
                     </Navbar.Brand>
                     <Nav className="mr-auto">
-                        <Link to='/themes'>Project</Link>
+                        <Link to='/themes'>My Projects</Link>
                         <Link className='ml-3' to='/initiatives'>Initiatives</Link>
                         <Link className='ml-3' to='/backlog'>Backlog</Link>
                     </Nav>
-                    {/* <Form inline>
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                        <Button variant="outline-primary">Search</Button>
-                    </Form> */}
                 </Navbar> 
 
                 <Switch>
@@ -45,6 +42,7 @@ export class Menu extends Component {
                     <Route exact path="/backlog/:id">
                         <Backlog/>
                     </Route>
+                    <Route path="/epics/:id" children={<StoryLayout />}/>
                 </Switch>
             </div>
             </Router>

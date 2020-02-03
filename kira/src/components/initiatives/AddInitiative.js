@@ -14,6 +14,10 @@ class AddInitiative extends React.Component {
     };
   }
 
+  componentDidMount(){
+
+  }
+
   updateInput = input => {
     this.setState({
       ...this.state,
@@ -31,7 +35,9 @@ class AddInitiative extends React.Component {
   }
 
   handleAddInitiative = () => {
-    if(this.state.input === '' || this.state.themeId === ''){
+    const {input, themeId} = this.state
+
+    if(input === '' || themeId === ''){
       return alert('Input initiative and select a theme before adding')
     }
     this.props.addInitiative(this.state);
@@ -52,6 +58,7 @@ class AddInitiative extends React.Component {
       <DropdownButton
         id="dropdown-basic-button"
         title={this.dropDownTitle()}
+        
       >
         {themes.map((theme => (
           <Dropdown.Item

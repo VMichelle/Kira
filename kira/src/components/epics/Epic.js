@@ -1,13 +1,19 @@
-import React from 'react'
+import React from 'react';
+import {Link} from 'react-router-dom'
 
 function Epic(props) {
     return (
         <li className="m-2 list-unstyled">
-            <button className='btn btn-outline-secondary p-2' style={{width: 150}} onClick={props.onClick}>
+            <Link 
+                className='btn btn-outline-secondary p-2'
+                style={{width: 200}}
+                onClick={props.onClick}
+                to={props.to}
+                >
             <h5>{props.name}</h5>
             <p>{props.details}</p>
-            <p>InitiativeId: {props.themeId}</p>
-            </button>
+            <p>InitiativeId: {props.initiativeId}</p>
+            </Link>
         </li>   
     )
 }

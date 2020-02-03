@@ -8,6 +8,7 @@ export class InitiativesLayout extends Component {
     render() {
         return (
             <Container className='mt-3'>
+                <p>An initiative is a group of epics that drive towards a goal.</p>
                 <AddInitiative/>
                 <div className='mt-2'></div>
                 <InitiativesList/> 
@@ -24,4 +25,4 @@ const mapDispatchToProps = {
     
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(InitiativesLayout)
+export default connect(mapStateToProps, mapDispatchToProps)

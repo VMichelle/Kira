@@ -1,77 +1,113 @@
-import React, {useState} from 'react'
+import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import Initiative from './Initiative';
-import {Modal, Button} from 'react-bootstrap'
+// import {Modal, Button} from 'react-bootstrap';
+// import AddInitiative from './AddInitiative'
 
-// const selectInitiative = (themeId) => {
-//     console.log(themeId)
-//     return(
-        
-//     )
-// }
 
-function Example() {
-    const [show, setShow] = useState(false);
-  
-    return (
-      <>
-        <Button variant="primary" onClick={() => setShow(true)}>
-          Custom Width Modal
-        </Button>
-  
-        <Modal
-          show={show} 
-          onHide={() => setShow(false)}
-          dialogClassName="modal-100w"
-          aria-labelledby="example-custom-modal-styling-title"
-        >
-          <Modal.Header closeButton>
-            <Modal.Title id="example-custom-modal-styling-title">
-              Custom Modal Styling
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <p>
-              Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde
-              commodi aspernatur enim, consectetur. Cumque deleniti temporibus
-              ipsam atque a dolores quisquam quisquam adipisci possimus
-              laboriosam. Quibusdam facilis doloribus debitis! Sit quasi quod
-              accusamus eos quod. Ab quos consequuntur eaque quo rem! Mollitia
-              reiciendis porro quo magni incidunt dolore amet atque facilis ipsum
-              deleniti rem!
-            </p>
-          </Modal.Body>
-        </Modal>
-      </>
-    );
+export class InitiativesList extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      initiId: '',
+      initiName: '',
+      epics: ''
+    }
   }
 
-const InitiativesList = ({initiatives}) => {
-  const [show, setShow] = useState(false);
+  onInitiClick(id, name){
+    this.setState({
+      ...this.state,
+      initiId: id,
+      initiName: name
+    })
+    this.getEpics(id)
+  }
+
+  getEpics(id){
+    const { epics } = this.props;
+    let epicsArr = [];
+
+    for(let i=0; i<epics.length; i++){
+      if(id === epics[i].initiativeId){
+        let epic = epics[i];
+        epicsArr.push(
+          <Initiative 
+            to={epic.id}
+            key={epic.id}
+            name={epic.name}
+            themeId={id}
+            onClick={() => this.getEpics(epic.id)}
+          />
+        )
+      }
+    }
+
+    this.setState({
+      epics: epicsArr
+    })
+    
+  }
 
 
-  return(
+  displayEpics(){
+    const { initiName, epics } = this.state
+
+    if(epics === ''){
+      return
+    }
+    
+    return(
+      
+      <div>
+        <hr/>
+        <h4 className='d-flex justify-content-center'>
+          {initiName}
+        </h4>
+        <h6 className='d-flex justify-content-center'>
+          Epics
+        </h6>
+        <div className='d-flex flex-wrap justify-content-center'>
+          {epics}
+        </div>
+      </div>
+    )
+  }
+
+
+  render(){
+  const { initiatives } =  this.props
+
+    return(
       <div>
           <ul className='d-flex flex-wrap'>
               {initiatives.map((initiative => (
                   <Initiative 
                       initiative={initiative}
-                      // key={initiative.id}
-                      // name={initiative.name}
-                      // themeId={initiative.themeId}
-                      //onClick={}
+                      key={initiative.id}
+                      name={initiative.name}
+                      themeId={initiative.themeId}
+                      onClick={() => this.onInitiClick(initiative.id, initiative.name)}
                   />
               )))}
           </ul>
-          <Example />
+          <div>
+            {this.displayEpics()}
+          </div>
+
       </div>
-  )
+    )
+  }
+
+  
 }
 
 const mapStateToProps = state => {
     return {
         initiatives: state.initiatives,
-        themes: state.themes
+        themes: state.themes,
+        epics: state.epics
     }
 };
 

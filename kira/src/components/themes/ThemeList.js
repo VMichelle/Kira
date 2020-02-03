@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import Theme from "./Theme";
-import store from '../../redux/store';
+//import store from '../../redux/store';
 import Initiative from '../initiatives/Initiative';
-import AddInitiative from '../initiatives/AddInitiative'
+import Epic from '../epics/Epic';
+import AddModal from '../AddModal'
+import AddInitiative from '../initiatives/AddInitiative';
+import AddEpic from '../epics/AddEpic'
 
 export class ThemeList extends Component {
 
@@ -12,6 +15,8 @@ export class ThemeList extends Component {
     this.state = {
       themeId: '',
       themeName: '',
+      initiName: '',
+      initiId: '',
       initi: '',
       epics: ''
     }
@@ -21,13 +26,29 @@ export class ThemeList extends Component {
     this.setState({
       ...this.state,
       themeId: id,
-      themeName: name
+      themeName: name,
+      epics: ''
     })
     this.getInitiatives(id)
   }
 
-  getInitiatives(id){
+  onInitiClick(id, name){
+    console.log(id, name)
+    this.setState({
+      ...this.state,
+      initiId: id,
+      initiName: name
+    })
+    this.getEpics(id)
+  }
 
+  onEpicClick(id){
+    console.log(id)
+
+
+  }
+
+  getInitiatives(id){
     const {initiatives} = this.props
     let initi = []
 
@@ -40,7 +61,7 @@ export class ThemeList extends Component {
             key={initiative.id}
             name={initiative.name}
             themeId={id}
-            onClick={() => this.getEpics(initiative.id)}
+            onClick={() => this.onInitiClick(initiative.id, initiative.name)}
           />
         )
       }
@@ -53,15 +74,99 @@ export class ThemeList extends Component {
     
   }
 
-  getEpics(id){
+  displayIniti(){
+    const { themeName, initi } = this.state
 
-    //const {  }
-    return
+    if(initi === ''){
+      return
+    }
+
+    return(
+      
+      <div>
+        <hr/>
+          <h4 className='d-flex justify-content-center'>
+            {themeName}
+          </h4>
+          <h6 className='d-flex justify-content-center'>
+            Initiatives
+          </h6>
+          <div className='d-flex justify-content-center'>
+            <AddModal
+              label='Add Initiative'
+              title='Add an initiative'
+              body={<AddInitiative />}
+            />
+          </div>
+          
+        <div className='d-flex flex-wrap justify-content-center'>
+          {initi}
+        </div>
+      </div>
+    )
+  }
+
+  getEpics(id){
+    const { epics } = this.props;
+    let epicsArr = [];
+
+    for(let i=0; i<epics.length; i++){
+      if(id === epics[i].initiativeId){
+        let epic = epics[i];
+        epicsArr.push(
+          <Epic 
+            key={epic.id}
+            name={epic.name}
+            initiativeId={id}
+            details={epic.details}
+            //onClick={() => this.onEpicClick(epic.id)}
+            to={`/epics/${epic.id}`}
+          />
+        )
+      }
+    }
+
+    this.setState({
+      epics: epicsArr
+    })
+    
+  }
+
+  displayEpics(){
+    const { initiName, epics } = this.state
+
+    if(epics === ''){
+      return
+    }
+    
+    return(
+      <div>
+        <hr/>
+        <h4 className='d-flex justify-content-center'>
+          {initiName}
+        </h4>
+        <h6 className='d-flex justify-content-center'>
+          Epics
+        </h6>
+        <div className='d-flex justify-content-center'>
+          <AddModal
+            label='Add Epic'
+            title='Add an epic'
+            body= {<AddEpic />}
+          />
+        </div>
+        
+        <div className='d-flex flex-wrap justify-content-center'>
+          {epics}
+        </div>
+      </div>
+    )
   }
   
 
   render() {
     const {themes} = this.props
+
     return(
       <div>
         <ul className='d-flex flex-wrap'>
@@ -70,16 +175,13 @@ export class ThemeList extends Component {
             )))
             }
         </ul>
-        
         <div>
-          {this.state.themeName}
+          {this.displayIniti()}
         </div>
-        <div className='d-flex flex-wrap'>
-          {this.state.initi}
+        <div>
+          {this.displayEpics()}
         </div>
-        {/* <div className='mt-5'>
-          <AddInitiative />
-        </div> */}
+
       </div>
       )
   }

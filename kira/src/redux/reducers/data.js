@@ -3,17 +3,17 @@ export default function data() {
 
     let myInitialState = {
         themes: [
-            {id: 1, name:'Canada'},
-            {id: 2, name:'United States'},
-            {id: 3, name:'South America'}
+            {id: 1, name:'Theme 1'},
+            {id: 2, name:'Theme 2'},
+            {id: 3, name:'Theme 3'}
         ],
         initiatives: [
-            {id: 1, name:'Ontario', themeId: 1},
-            {id: 2, name:'New York', themeId: 2},
-            {id: 4, name:'California', themeId: 2},
-            {id: 6, name:'Nebraska', themeId: 2},
-            {id: 3, name:'Brazil', themeId: 3},
-            {id: 5, name:'Chile', themeId: 3}
+            {id: 1, name:'Initiative 1', themeId: 1},
+            {id: 2, name:'Initiative 2', themeId: 2},
+            {id: 4, name:'Initiative 3', themeId: 2},
+            {id: 6, name:'Initiative 4', themeId: 2},
+            {id: 3, name:'Initiative 5', themeId: 3},
+            {id: 5, name:'Initiative 6', themeId: 3}
         ],
         epics: [
             {
@@ -30,33 +30,79 @@ export default function data() {
                 initiativeId: 2,
                 storyId: 2,
                 done: false
+            },
+            {
+                id: 3,
+                name: 'Third Epic',
+                details: '3 Quibusdam facilis doloribus debitis! Sit quasi quod accusamus eos quod.',
+                initiativeId: 3,
+                storyId: 3,
+                done: false
+            }
+            ,
+            {
+                id: 4,
+                name: 'Second Epic',
+                details: '2 Quibusdam facilis doloribus debitis! Sit quasi quod accusamus eos quod.',
+                initiativeId: 1,
+                storyId: 4,
+                done: false
             }
         ],
         stories: [
             {
                 id: 1,
-                name:'first story',
-                title: 'First Title',
+                name:'First story Ipsum molestiae natus adipisci',
                 description: 'Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde commodi aspernatur enim, consectetur. Cumque deleniti temporibus ipsam atque a dolores quisquam quisquam adipisci possimus laboriosam.',
                 assignee: 2,
                 reporter: 1,
                 storyPoints: 3,
-                priority: 5,
-                sprint: 2,
+                priority: 'high',
                 epicId: 1,
                 status: false
             },
             {
                 id: 2,
-                name:'second story',
-                title: 'Second Title',
+                name:'Second story Ipsum molestiae natus adipisci',
                 description: 'Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde commodi aspernatur enim, consectetur. Cumque deleniti temporibus ipsam atque a dolores quisquam quisquam adipisci possimus laboriosam.',
                 assignee: 1,
                 reporter: 1,
                 storyPoints: 3,
-                priority: 5,
-                sprint: 2,
+                priority: 'medium',
                 epicId: 2,
+                status: false
+            },
+            {
+                id: 3,
+                name:'Third story Ipsum molestiae natus adipisci',
+                description: 'Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde commodi aspernatur enim, consectetur. Cumque deleniti temporibus ipsam atque a dolores quisquam quisquam adipisci possimus laboriosam.',
+                assignee: 1,
+                reporter: 1,
+                storyPoints: 3,
+                priority: 'medium',
+                epicId: 2,
+                status: false
+            },
+            {
+                id: 4,
+                name:'Fourth story Ipsum molestiae natus adipisci',
+                description: 'Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde commodi aspernatur enim, consectetur. Cumque deleniti temporibus ipsam atque a dolores quisquam quisquam adipisci possimus laboriosam.',
+                assignee: 1,
+                reporter: 1,
+                storyPoints: 3,
+                priority: 'medium',
+                epicId: 1,
+                status: false
+            },
+            {
+                id: 5,
+                name:'Fifth story Ipsum molestiae natus adipisci',
+                description: 'Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde commodi aspernatur enim, consectetur. Cumque deleniti temporibus ipsam atque a dolores quisquam quisquam adipisci possimus laboriosam.',
+                assignee: 1,
+                reporter: 1,
+                storyPoints: 3,
+                priority: 'medium',
+                epicId: 1,
                 status: false
             }
         ]

@@ -30,7 +30,7 @@ class AddTheme extends React.Component {
           className='pl-2'
         />
         <button className="btn btn-outline-primary btn-sm ml-2" onClick={this.handleAddTheme}>
-          Add Project
+          Add Theme
         </button>
       </div>
     );
