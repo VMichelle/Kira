@@ -11,6 +11,7 @@ import Backlog from './Backlog';
 import HomePage from './home/HomePage';
 import { InitiativesLayout } from './initiatives/initiative.layout';
 import StoryLayout from './stories/story.layout'
+import StoryView from '../components/stories/StoryView'
 
 
 export class Menu extends Component {
@@ -39,15 +40,14 @@ export class Menu extends Component {
                     <Route exact path="/initiatives">
                         <InitiativesLayout/>
                     </Route>
-                    <Route exact path="/backlog/:id">
+                    <Route path="/backlog/">
                         <Backlog/>
                     </Route>
                     <Route path="/epics/:id" children={<StoryLayout />}/>
+                    <Route path="/story/:id" children={<StoryView />}/>
                 </Switch>
             </div>
-            </Router>
-
-            
+            </Router> 
         )
     }
 }

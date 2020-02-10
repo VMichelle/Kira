@@ -3,7 +3,7 @@ import data from './data.js'
 export const ADD_THEME = "ADD_THEME";
 export const ADD_INITIATIVE = "ADD_INITIATIVE";
 export const ADD_EPIC = "ADD_EPIC";
-//export const ADD_STORY = "ADD_STORY";
+export const ADD_STORY = "ADD_STORY";
 
 
 const initialState = data()
@@ -55,21 +55,19 @@ const initialState = data()
               epics: newArr
           };
         }
-        // case ADD_STORY: {
-        //   const newArr = [];
-        //   for(let i=0; i<state.stories.length; i++){
-        //       newArr.push(state.stories[i])
-        //   }
-        //   newArr.push({
-        //     id: state.stories.length+1,
-        //     name: action.name.input,
-        //     initiativeId: action.name.initiativeId
-        //   })
-        //   return {
-        //       ...state,
-        //       stories: newArr
-        //   };
-        // }        
+        case ADD_STORY: {
+          const newArr = [];
+          for(let i=0; i<state.stories.length; i++){
+              newArr.push(state.stories[i])
+          }
+          newArr.push({
+            ...action.story
+          })
+          return {
+              ...state,
+              stories: newArr
+          };
+        }        
 
 
       default:
@@ -92,7 +90,7 @@ const initialState = data()
     name: name
   });
 
-  // export const addStory = name => ({
-  //   type: ADD_STORY,
-  //   name: name
-  // });
+  export const addStory = story => ({
+    type: ADD_STORY,
+    story: story
+  });

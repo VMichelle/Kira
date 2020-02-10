@@ -42,7 +42,7 @@ export default function data() {
             ,
             {
                 id: 4,
-                name: 'Second Epic',
+                title: 'Second Epic',
                 details: '2 Quibusdam facilis doloribus debitis! Sit quasi quod accusamus eos quod.',
                 initiativeId: 1,
                 storyId: 4,
@@ -52,60 +52,108 @@ export default function data() {
         stories: [
             {
                 id: 1,
-                name:'First story Ipsum molestiae natus adipisci',
+                title:'First story Ipsum molestiae natus adipisci',
                 description: 'Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde commodi aspernatur enim, consectetur. Cumque deleniti temporibus ipsam atque a dolores quisquam quisquam adipisci possimus laboriosam.',
-                assignee: 2,
+                assigneeId: 2,
                 reporter: 1,
                 storyPoints: 3,
                 priority: 'high',
                 epicId: 1,
-                status: false
+                status: 0,
+                sprint: 'none'
             },
             {
                 id: 2,
-                name:'Second story Ipsum molestiae natus adipisci',
+                title:'Second story Ipsum molestiae natus adipisci',
                 description: 'Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde commodi aspernatur enim, consectetur. Cumque deleniti temporibus ipsam atque a dolores quisquam quisquam adipisci possimus laboriosam.',
-                assignee: 1,
+                assigneeId: 1,
                 reporter: 1,
                 storyPoints: 3,
                 priority: 'medium',
                 epicId: 2,
-                status: false
+                status: 0,
+                sprint: 'none'
+                
             },
             {
                 id: 3,
-                name:'Third story Ipsum molestiae natus adipisci',
+                title:'Third story Ipsum molestiae natus adipisci',
                 description: 'Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde commodi aspernatur enim, consectetur. Cumque deleniti temporibus ipsam atque a dolores quisquam quisquam adipisci possimus laboriosam.',
-                assignee: 1,
+                assigneeId: 1,
                 reporter: 1,
                 storyPoints: 3,
                 priority: 'medium',
                 epicId: 2,
-                status: false
+                status: 0,
+                sprint: 'none'
             },
             {
                 id: 4,
-                name:'Fourth story Ipsum molestiae natus adipisci',
+                title:'Fourth story Ipsum molestiae natus adipisci',
                 description: 'Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde commodi aspernatur enim, consectetur. Cumque deleniti temporibus ipsam atque a dolores quisquam quisquam adipisci possimus laboriosam.',
-                assignee: 1,
+                assigneeId: 1,
                 reporter: 1,
                 storyPoints: 3,
                 priority: 'medium',
                 epicId: 1,
-                status: false
+                status: 0,
+                sprint: 'none'
             },
             {
                 id: 5,
-                name:'Fifth story Ipsum molestiae natus adipisci',
+                title:'Fifth story Ipsum molestiae natus adipisci',
                 description: 'Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde commodi aspernatur enim, consectetur. Cumque deleniti temporibus ipsam atque a dolores quisquam quisquam adipisci possimus laboriosam.',
-                assignee: 1,
+                assigneeId: 1,
                 reporter: 1,
                 storyPoints: 3,
                 priority: 'medium',
                 epicId: 1,
-                status: false
+                status: 0,
+                sprint: 'none'
+            }
+        ],
+        users: [
+            {
+                id: 1,
+                name: 'Michelle Vu',
+                initials: 'MV'
+            },
+            {
+                id: 2,
+                name: 'Harry Potter',
+                initials: 'HP'
+            },
+            {
+                id: 3,
+                name: 'Hermione Granger',
+                initials: 'HG'
+            },
+            {
+                id: 4,
+                name: 'Ron Weasley',
+                initials: 'RW'
+            }
+        ],
+
+        sprint: [
+            {
+                id: 1,
+                name: 'Backlog'
+            },
+            {
+                id: 2,
+                name: 'Prioritize Backlog'
+            },
+            {
+                id: 3,
+                name: 'Goblet of Fire'
+            },
+            {
+                id: 4,
+                name: 'Sorcere\'s Stone'
             }
         ]
+
       };
 
     return (myInitialState)

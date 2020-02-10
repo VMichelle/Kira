@@ -1,11 +1,15 @@
-import React from 'react'
-import {useParams} from 'react-router-dom'
+import React from 'react';
+//import {useParams} from 'react-router-dom';
+import StoryList from './stories/StoryList'
 
 function Backlog() {
-    let {id} = useParams();
-    console.log(id)
+    // let {id} = useParams();
+    // console.log(id)
     return (
-        <div>BACKLOG PAGE {id} </div>
+        <div className='mt-3'> 
+            <StoryList />
+        </div>
+
     )
          
 }
